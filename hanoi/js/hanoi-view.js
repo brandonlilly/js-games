@@ -9,33 +9,30 @@
     this.selectedTower = null;
 
     this.setupTowers();
-    this.registerEvents();
+    this.$display.on('click', '.tower', this.clickTower.bind(this) );
     this.render();
   };
 
-  View.prototype.registerEvents = function() {
-    var view = this;
+  View.prototype.clickTower = function(event) {
+    var $tower = $(event.currentTarget);
+    var towerid = $tower.data('towerid');
 
-    this.$display.on('click', '.tower', function(event) {
-      var $tower = $(event.currentTarget);
-      var towerid = $tower.data('towerid');
-      if (view.selectedTower === null) {
-        view.selectedTower = towerid;
-        $tower.addClass('selected');
-      } else {
-        if ( !view.game.move(view.selectedTower, towerid) ) {
-          alert('Invalid move');
-        }
-        $('.tower').removeClass('selected');
-        view.selectedTower = null;
-        view.render();
-        if ( view.game.isWon() ) {
-          $tower.children('.disc').css('background', 'lightgreen');
-          alert('Good work!');
-          view.$display.off('click');
-        }
+    if (this.selectedTower === null) {
+      this.selectedTower = towerid;
+    } else {
+      if ( !this.game.move(this.selectedTower, towerid) ) {
+        alert('Invalid move');
       }
-    });
+      this.selectedTower = null;
+    }
+
+    this.render();
+
+    if ( this.game.isWon() ) {
+      $tower.children('.disc').css('background', 'lightgreen');
+      this.$display.off('click');
+      alert('Good work!');
+    }
   };
 
   View.prototype.setupTowers = function() {
@@ -62,6 +59,12 @@
     var game = this.game;
     $towers.each(function(i){
       var $tower = $(this);
+
+      $tower.removeClass('selected');
+      if ( this.selectedTower === i ){
+        $tower.addClass('selected');
+      }
+
       var $discs = $tower.children(".disc");
       $discs.removeClass('large-disc small-disc medium-disc');
       [].reverse.call($discs);

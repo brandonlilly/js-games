@@ -4,9 +4,11 @@
 
   var View = SnakeGame.View = function($el){
     this.$display = $el;
-    $el.attr("tabindex", 0);
+    this.$display.attr("tabindex", 0);
+
     this.board = new SnakeGame.Board(15, 15);
     this.setupBoard();
+
     this.registerEvents();
 
     setInterval(this.step.bind(this), 250);
@@ -46,7 +48,7 @@
 
   View.prototype.registerEvents = function(){
     var snake = this.board.snake;
-    this.$display.keydown(function(event){
+    $(window).keydown(function(event){
       var codes = {
         87: 'N',
         65: 'W',
