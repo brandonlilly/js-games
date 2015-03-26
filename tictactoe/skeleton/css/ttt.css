@@ -1,0 +1,56 @@
+#display {
+  background: #aaaaaf;
+  margin: 0 auto;
+  display: block;
+  width: 330px;
+  padding: 5px;
+}
+
+.row {
+  display: block;
+}
+
+.cell {
+  float: left;
+  background: #ddd;
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  font-size: 72px;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
+  line-height: 100px;
+}
+
+.cell:hover:not(.clicked) {
+  background: lightyellow;
+}
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.clicked {
+  background: white;
+  cursor: default;
+}
+
+.x {
+  color: teal;
+}
+
+.o {
+  color: orange;
+}
+
+.win-message{
+  text-align: center;
+  padding: 20px;
+  font-size: 64px;
+  color: violet;
+  font-family: sans-serif;
+}

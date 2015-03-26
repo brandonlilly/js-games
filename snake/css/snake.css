@@ -1,0 +1,33 @@
+.title {
+  text-align: center;
+  font-size: 64px;
+  color: #FFD39B;
+  font-family: sans-serif;
+}
+
+#display {
+  width: 300px;
+  margin: 0 auto;
+  border: 1px solid salmon;
+  tabindex: 0;
+}
+
+.snake-segment {
+  background: lightblue;
+}
+
+.row {
+  display:block;
+}
+
+.cell {
+  float: left;
+  width: 20px;
+  height: 20px;
+}
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
